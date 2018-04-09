@@ -44,17 +44,17 @@ def sign_up():
 
             has_errors= True
             
-        if password != verifypassword:
-            verify_error= 'Passwords must match'
-            verifypassword= ''
-
-            has_errors = True
-
-        if len(verifypassword) < 1:
+        if len(verifypassword) == 0:
             verify_error= 'Cannot leave blank'
             verifypassword= ''
 
             has_errors= True
+        
+        if password != verifypassword:
+            verify_error= 'Passwords must match'
+            verifypassword= ''
+        
+            has_errors = True
 
         if ' ' in password:
             password_error= 'Password cannot contain spaces'
@@ -92,9 +92,9 @@ def sign_up():
         if has_errors == True:
             
             return render_template('home.html', username_error= username_error, 
-                password_error= password_error, verify_error= verify_error, username= username,
-                password = password, verifypassword= verifypassword,email_error= email_error,
-                email= email, form= request.form)
+                password_error= password_error, verify_error= verify_error,
+                verifypassword= verifypassword,email_error= email_error,
+                form= request.form)
         
         else:    
         
